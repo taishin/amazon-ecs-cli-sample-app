@@ -3,11 +3,11 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY_NAME: demo/api
+    DOCKER_BUILDKIT: "1"
 
 phases:
   install:
     runtime-versions:
-      docker: 18
       golang: 1.15
   pre_build:
     commands: 
