@@ -4,7 +4,7 @@ env:
   variables:
     ECR_REPOSITORY_NAME: demo/api
 
-phase:
+phases:
   install:
     runtime-versions:
       golang: 1.15
