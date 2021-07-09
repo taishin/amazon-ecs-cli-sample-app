@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY_NAME: demo/api
-    DOCKER_BUILDKIT: "1"
+#     DOCKER_BUILDKIT: "1"
 
 phases:
   install:
