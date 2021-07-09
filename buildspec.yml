@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY_NAME: demo/api
-#     DOCKER_BUILDKIT: "1"
+    DOCKER_BUILDKIT: "1"
 
 phases:
   install:
@@ -11,15 +11,12 @@ phases:
       golang: 1.15
   pre_build:
     commands: 
-      - docker version
       - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY_NAME
   build:
     commands:
-#       - docker buildx build -t $REPOSITORY_URI:latest .
-      - docker buildx build --platform=linux/amd64 -t $REPOSITORY_URI:latest . --push
-#   post_build:
-#     commands:
-#       - echo "docker push $REPOSITORY_URI:latest"
-#       - docker push $REPOSITORY_URI:latest
+      - docker build -t $REPOSITORY_URI:latest .
+  post_build:
+    commands:
+      - docker push $REPOSITORY_URI:latest
