@@ -1,0 +1,57 @@
+{
+  "executionRoleArn": "arn:aws:iam::926581611989:role/proofrog-exp-ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "command": [],
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "SERVER_NAME",
+          "value": "app.exp.proofrog.cloud"
+        },
+        {
+          "name": "SERVER_PORT",
+          "value": "80"
+        },
+        {
+          "name": "TEST",
+          "value": "test2"
+        }
+      ],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "<IMAGE1_NAME>",
+      "essential": true,
+      "readonlyRootFilesystem": false,
+      "dockerLabels": {
+        "ENV": "exp"
+      },
+      "privileged": false,
+      "name": "proofrog-exp-demo-nginx"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "512",
+  "taskRoleArn": "arn:aws:iam::926581611989:role/proofrog-exp-demo-ecsTaskRole",
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:926581611989:task-definition/proofrog-exp-demo:4",
+  "family": "proofrog-exp-demo",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "status": "ACTIVE",
+  "volumes": []
+}
