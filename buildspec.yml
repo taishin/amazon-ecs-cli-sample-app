@@ -23,8 +23,10 @@ phases:
     commands:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - printf '{"name":"%s","ImageURI":"%s"}' $ECR_REPOSITORY_NAME $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+      - aws ecs describe-task-definition --task-definition proofrog-exp-demo --query 'taskDefinition' > taskdef.json
 
 artifacts:
   files:
     - imageDetail.json
+    - taskdef.json
 
